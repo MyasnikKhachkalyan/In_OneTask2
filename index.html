@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="filterApp">
+<head>
+    <title>Task2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    
+    <script>
+    let filterApp = angular.module('filterApp', []); 
+    filterApp.filter('myFilter', function() {
+        return function(x) {
+            if(x.length >10){
+                return x.substring(0, 10) + "..."
+            }
+            else{
+                return txt;
+            }
+        };
+    });
+    filterApp.controller('filtCtrl', function($scope){
+        $scope.names = ['ssusususususususususu', 'kikikikikikikikikikik', 'yayayayayayayayayayay'];
+    })
+    </script>
+</head>
+<body ng-app="filterApp" ng-controller="filtCtrl">
+    <p ng-repeat="x in names">
+        {{x | myFilter}}
+    </p>
+</body>
+</html>
