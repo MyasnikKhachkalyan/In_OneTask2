@@ -8,16 +8,31 @@
     let filterApp = angular.module('filterApp', []); 
     filterApp.filter('myFilter', function() {
         return function(x) {
-            if(x.length >10){
-                return x.substring(0, 10) + "..."
+            let sentArr = x.split(" ");
+            let txt = sentArr[0];
+            let len = sentArr[0].length;
+            if(len>10){
+                    return "...";
+                }
+            else if(len === 10){
+                    return txt;
+            }   
+            else{ 
+                for(let i=1; i<sentArr.length; i++){
+                    len += sentArr[i].length;
+                    if(len<10){
+                        txt += " " + sentArr[i];
+                    }
+                    else{
+                        return txt;
+                    }
+                }
             }
-            else{
-                return txt;
-            }
+           
         };
     });
     filterApp.controller('filtCtrl', function($scope){
-        $scope.names = ['ssusususususususususu', 'kikikikikikikikikikik', 'yayayayayayayayayayay'];
+        $scope.names = ['ssusususus usus usususu', 'kikikikik ikikikikikik', 'yayayay ayayayayayay'];
     })
     </script>
 </head>
